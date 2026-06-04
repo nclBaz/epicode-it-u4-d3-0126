@@ -64,18 +64,27 @@ public class Main {
 		System.out.println(aldo);
 		System.out.println(giova);
 
-		System.out.println(User.passwordValida(aldo.password));
+		// System.out.println(User.passwordValida(aldo.password));
 		System.out.println(User.passwordValida("123"));
 
 		User aldo2 = new User("123", "aldo@gmail.com");
-		aldo.id = 1;
-		aldo2.id = 1;
 
 		if (aldo == aldo2) System.out.println("SONO UGUALI");
 		else System.out.println("SONO DIVERSI");
 
 		if (aldo.equals(aldo2)) System.out.println("SONO UGUALI");
 		else System.out.println("SONO DIVERSI");
+
+		// INCAPSULAMENTO
+
+		// Devo togliere l'accesso diretto agli attributi (e ad eventuali metodi)
+		// e lo faccio mettendoli private
+		// giova.role = Role.ADMIN; // <-- NON DEVE ESSERE POSSIBILE FARE QUESTA COSA!
+		// giova.email = ""; // <-- Neanche questo si deve poter fare (un email vuota non è accettabile)
+
+		// Dopo averli messi private, potrò renderli leggibili o scrivibili
+		// solo tramite metodi intermediari che si chiamano GETTER (per leggere) e SETTER (per scrivere)
+		// Dovrò scegliere accuratamente attributo per attributo quali potranno essere letti e quali potranno essere scritti
 
 
 	}

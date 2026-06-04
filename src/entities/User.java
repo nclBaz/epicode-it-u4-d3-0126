@@ -5,12 +5,14 @@ import java.util.Random;
 
 public class User {
 	// Attributi statici
-	public static final int MIN_LUNGH_PW = 4;
+	private static final int MIN_LUNGH_PW = 4;
 
 	// Attributi
-	public int id;
-	public String email;
-	public String password;
+	private int id;
+	private String email;
+	private String password;
+	private Role role; // Con l'ENUM Role andiamo a restringere i possibili valori per
+	// l'attributo ai soli definiti nell'enum Role
 
 	// Costruttori
 	public User(String password, String email) {
@@ -18,6 +20,7 @@ public class User {
 		this.email = email;
 		Random random = new Random();
 		this.id = random.nextInt(1, 10000);
+		this.role = Role.USER;
 	}
 
 	// Metodi di classe
@@ -25,6 +28,41 @@ public class User {
 		if (password != null && password.length() >= MIN_LUNGH_PW) return true;
 		else return false;
 	}
+
+	// GETTER & SETTER
+	public int getId() {
+		return id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+//	public String getPassword() { <-- La voglio tenere per uso interno e basta
+	// quindi non faccio il getter
+//		return password;
+//	}
+
+	public void setEmail(String email) {
+		// TODO: validare l'email ricevuta
+		if (!email.isEmpty())
+			this.email = email;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setPassword(String password) {
+		if (password.length() > MIN_LUNGH_PW)
+			this.password = password;
+	}
+
+	//	public void setId(int id) { // Una volta impostato non voglio che sia modificabile
+	// quindi non faccio il setter
+//		this.id = id;
+//	}
+
 
 	// Metodi di istanza
 	public void inviaEmail(String testo) {
@@ -37,6 +75,7 @@ public class User {
 				"id=" + id +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
+				", role='" + role + '\'' +
 				'}';
 	}
 
@@ -46,5 +85,5 @@ public class User {
 		User user = (User) o;
 		return id == user.id && Objects.equals(email, user.email) && Objects.equals(password, user.password);
 	}
-	
+
 }
