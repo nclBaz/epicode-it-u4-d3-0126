@@ -76,4 +76,23 @@ public class Circle {
 		System.out.println("Area: " + this.getArea());
 		System.out.println("Perimetro: " + this.getPerimeter());
 	}
+
+	// tasto dx (nella classe) -> Generate -> equals and hashCode
+	// (hashCode per ora non ci serve)
+	@Override // Sovrascriviamo il comportamento di default che non ci piace
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		Circle circle = (Circle) o;
+		return id == circle.id && Double.compare(radius, circle.radius) == 0 && Double.compare(x, circle.x) == 0 && Double.compare(y, circle.y) == 0;
+	}
+
+	@Override
+	public String toString() {
+		return "{" +
+				"id:" + id +
+				", radius:" + radius +
+				", x:" + x +
+				", y:" + y +
+				'}';
+	}
 }
