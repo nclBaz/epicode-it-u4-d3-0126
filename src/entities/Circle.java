@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class Circle {
 
+	// Lista Attributi STATICI
+	public static int numCerchiCreati = 0;
+
 	// Lista Attributi
 	public int id;
 	public double radius;
@@ -18,6 +21,7 @@ public class Circle {
 		this.radius = 1.0;
 		Random random = new Random();
 		this.id = random.nextInt(1, 10000);
+		Circle.numCerchiCreati++;
 	}
 
 	public Circle(double radius) { // II COSTRUTTORE - 1 PARAMETRO
@@ -27,16 +31,23 @@ public class Circle {
 		this.y = 100.0;
 		Random random = new Random();
 		this.id = random.nextInt(1, 10000);
+		Circle.numCerchiCreati++;
 	}
 
 	public Circle(double radius, double x, double y) { // III COSTRUTTORE - 3 PARAMETRI
 		// Utilizzo: Circle circle = new Circle(10.3, 2.6, 3.0);
-		if (radius < 0) this.radius = 1.0;
+		if (radius <= 0) this.radius = 1.0;
 		else this.radius = radius;
 		this.x = x;
 		this.y = y;
 		Random random = new Random();
 		this.id = random.nextInt(1, 10000);
+		Circle.numCerchiCreati++;
+	}
+
+	// Lista Metodi Statici
+	public static void printNumeroCreati() {
+		System.out.println("Numero cerchi creati: " + Circle.numCerchiCreati);
 	}
 
 
