@@ -1,34 +1,68 @@
 package entities;
 
+import java.util.Random;
+
 public class Circle {
 
 	// Lista Attributi
+	public int id;
 	public double radius;
 	public double x;
 	public double y;
 
+	// Lista Costruttori
+	public Circle() { // I COSTRUTTORE - NO PARAMETRI
+		// Utilizzo: Circle circle = new Circle();
+		this.x = 100.0;
+		this.y = 100.0;
+		this.radius = 1.0;
+		Random random = new Random();
+		this.id = random.nextInt(1, 10000);
+	}
+
+	public Circle(double radius) { // II COSTRUTTORE - 1 PARAMETRO
+		// Utilizzo: Circle circle = new Circle(10.3);
+		this.radius = radius;
+		this.x = 100.0;
+		this.y = 100.0;
+		Random random = new Random();
+		this.id = random.nextInt(1, 10000);
+	}
+
+	public Circle(double radius, double x, double y) { // III COSTRUTTORE - 3 PARAMETRI
+		// Utilizzo: Circle circle = new Circle(10.3, 2.6, 3.0);
+		if (radius < 0) this.radius = 1.0;
+		else this.radius = radius;
+		this.x = x;
+		this.y = y;
+		Random random = new Random();
+		this.id = random.nextInt(1, 10000);
+	}
+
+
 	// Lista Metodi
 	public double getDiameter() {
-		return radius * 2;
+		return this.radius * 2;
 	}
 
 	public void printDiameter() {
-		System.out.println("Il diametro è: " + getDiameter());
+		System.out.println("Il diametro è: " + this.getDiameter());
 	}
 
 	public double getPerimeter() {
-		return 2 * Math.PI * radius;
+		return 2 * Math.PI * this.radius;
 	}
 
 	public double getArea() {
-		return Math.PI * radius * radius;
+		return Math.PI * this.radius * this.radius;
 	}
 
 	public void printInfo() {
-		System.out.println("(X,Y): " + x + ", " + y);
-		System.out.println("Raggio: " + radius);
-		System.out.println("Diametro: " + getDiameter());
-		System.out.println("Area: " + getArea());
-		System.out.println("Perimetro: " + getPerimeter());
+		System.out.println("Id: " + this.id);
+		System.out.println("(X,Y): " + this.x + ", " + this.y);
+		System.out.println("Raggio: " + this.radius);
+		System.out.println("Diametro: " + this.getDiameter());
+		System.out.println("Area: " + this.getArea());
+		System.out.println("Perimetro: " + this.getPerimeter());
 	}
 }
